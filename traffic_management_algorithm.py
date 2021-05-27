@@ -1,7 +1,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 import random
-from car import *
+from classes import *
 from consts import *
 import numpy as np
 

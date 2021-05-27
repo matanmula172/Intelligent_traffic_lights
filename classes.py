@@ -11,3 +11,9 @@ class Car:
 
     def get_arrival_time(self):
         return self.arrival_time
+
+
+# Add class for Road and transfer all edge properties and functions here
+class Road:
+    def __init__(self):
+        pass
