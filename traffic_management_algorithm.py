@@ -71,7 +71,7 @@ def get_succ_edge(edge):
     if entering_traffic_light(edge):
         return None
     for e in edges_lst:
-        if entering_traffic_light(e) and e[1] == edge[0] and e[0] == edge[1]:
+        if entering_traffic_light(e) and e[1] == edge[0] and e[0] != edge[1]:
             return e
     return None
 
@@ -302,7 +302,7 @@ def print_stage(stage):
 
 
 if __name__ == "__main__":
-    # stat_avg_quantum()
+    stat_avg_quantum()
     # stat_max_quantum()
 
     init_distribution_dict()
