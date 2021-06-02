@@ -1,14 +1,7 @@
-import networkx as nx
 import matplotlib.pyplot as plt
 import random
-from classes import *
 from consts import *
 import numpy as np
-
-
-# returns true of edged is entering a traffic light node
-# def entering_traffic_light(edge):
-#     return edge[1][0] == 't'
 
 
 def insert_cars_into_queue(queue, cars):
@@ -24,12 +17,6 @@ def insert_cars_into_queue(queue, cars):
 def clean_roads():
     for edge in road_edges_lst:
         edge.set_occupancy([])
-
-
-def remove_cars_from_queue(queue, cars):
-    for i in range(cars):
-        queue.pop(0)
-    return queue
 
 
 def transfer_cars_q1_to_q2(q1, q2, cars):
@@ -86,7 +73,7 @@ def redact_rand_flow():
         if not edge.entering_traffic_light():
             cars_num = len(edge.get_occupancy())
             redacted_cars = random.randint(0, cars_num)
-            edge.set_occupancy(remove_cars_from_queue(edge.get_occupancy(), redacted_cars))
+            edge.remove_cars_from_road(redacted_cars)
 
 
 # adds number of cars (flow - by allowed capacity) to the roads entering the intersection by poisson distribution
@@ -113,7 +100,7 @@ def redact_poisson_flow():
             redacted_cars = np.random.poisson(distribution_dict[edge], 1)[0]
             if redacted_cars > cars_num:
                 redacted_cars = cars_num
-            edge.set_occupancy(remove_cars_from_queue(edge.get_occupancy(), redacted_cars))
+            edge.remove_cars_from_road(redacted_cars)
 
 
 # given to edges that theirs light has been turned green, updates the number of cars (flow)
@@ -286,8 +273,8 @@ def print_stage(stage):
 
 
 if __name__ == "__main__":
-    # stat_avg_quantum()
-    stat_max_quantum()
+    stat_avg_quantum()
+    # stat_max_quantum()
 
     init_distribution_dict()
     init_loss_dict()

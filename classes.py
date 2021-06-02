@@ -53,3 +53,7 @@ class Road:
         if self.entering_traffic_light():
             return self.get_destination()
         return self.get_origin()
+
+    def remove_cars_from_road(self, num_cars):
+        for i in range(num_cars):
+            self.occupancy.pop(0)
