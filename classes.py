@@ -6,6 +6,9 @@ class Car:
         self.arrival_time = arrival_time
         self.id = id
 
+    def __str__(self):
+        return self.id + " arrival time:" + self.arrival_time
+
     def get_car_weight(self, current_time):
         return current_time - self.arrival_time + 1
 
@@ -15,5 +18,38 @@ class Car:
 
 # Add class for Road and transfer all edge properties and functions here
 class Road:
-    def __init__(self):
-        pass
+    def __init__(self, origin, destination, capacity):
+        self.origin = origin
+        self.destination = destination
+        self.capacity = capacity
+        self.occupancy = list()
+
+    def __str__(self):
+        return self.origin + " to " + self.destination
+
+    def get_origin(self):
+        return self.origin
+
+    def get_destination(self):
+        return self.destination
+
+    def get_capacity(self):
+        return self.capacity
+
+    def set_occupancy(self, occupancy_queue):
+        self.occupancy = occupancy_queue
+        if len(self.occupancy) > self.capacity:
+            print("CAPACITY ERROR!")
+
+    def get_occupancy(self):
+        return self.occupancy
+
+    # returns true of edged is entering a traffic light node
+    def entering_traffic_light(self):
+        return self.get_destination()[0] == 't'
+
+    # returns traffic light id of an edge
+    def get_traffic_light_id(self):
+        if self.entering_traffic_light():
+            return self.get_destination()
+        return self.get_origin()
