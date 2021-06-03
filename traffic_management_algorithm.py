@@ -51,7 +51,7 @@ def get_succ_edge(edge):
         return None
     for e in road_edges_lst:
         if e.entering_traffic_light() and e.get_destination() == edge.get_origin() \
-                and e.get_origin() == edge.get_destination():
+                and e.get_origin() != edge.get_destination():
             return e
     return None
 
