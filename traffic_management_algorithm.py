@@ -194,8 +194,9 @@ def plot_all(edge, avg_time_quantum, min_q, max_q, stat_type, time_limit, is_poi
     for q in range(min_q, max_q):
         y_axis = avg_time_quantum[q]
         plt.legend()
-        # if is_poisson:
-        #     plt.title("lambda = " + str(distribution_dict[edge]))
+        if is_poisson:
+            titl = str(distribution_dict[edge])
+            plt.title("lambda = " + titl)
         plt.plot(my_time, y_axis, label=str("line " + str(q)))
     plt.savefig(str(edge.get_origin()) + ' to ' + str(edge.get_destination()) + '_' + stat_type + '.png')
     plt.clf()
@@ -268,12 +269,12 @@ def print_stage(stage):
     print(stage)
     print(CURRENT_TIME)
     for l in road_edges_lst:
-        print(str(l) + ": occupancy:" + str(l.get_occupancy()) + ", loss: " + str(calculate_edge_loss(l)))
+        print(str(l) + ": occupancy:" + str(len(l.get_occupancy())) + ", loss: " + str(calculate_edge_loss(l)))
     print()
 
 
 if __name__ == "__main__":
-    stat_avg_quantum()
+    # stat_avg_quantum()
     # stat_max_quantum()
 
     init_distribution_dict()

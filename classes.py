@@ -16,7 +16,6 @@ class Car:
         return self.arrival_time
 
 
-# Add class for Road and transfer all edge properties and functions here
 class Road:
     def __init__(self, origin, destination, capacity):
         self.origin = origin
@@ -57,3 +56,12 @@ class Road:
     def remove_cars_from_road(self, num_cars):
         for i in range(num_cars):
             self.occupancy.pop(0)
+
+
+# Use when we have multiple types of intersections
+class Intersection:
+    def __init__(self, road_lst):
+        self.roads = road_lst
+
+    def get_road_lst(self):
+        return self.roads
